@@ -34,10 +34,9 @@ object NotificationWeather : BaseHook() {
                 val viewGroup = param.thisObject as ViewGroup
                 val context = viewGroup.context
 
-                // MIUI编译时间大于 2022-03-12 00:00:00 且为内测版
-                if (SystemProperties[context, "ro.build.date.utc"].toInt() >= 1647014400 &&
-                    !SystemProperties[context, "ro.build.version.incremental"].endsWith("XM")
-                ) {
+                // MIUI编译时间大于 2022-03-12 00:00:00
+                if (SystemProperties[context, "ro.build.date.utc"].toInt() >= 1647014400
+                   ) {
                     // 获取原组件
                     val bigTimeId =
                         context.resources.getIdentifier("big_time", "id", context.packageName)
@@ -186,11 +185,8 @@ object NotificationWeather : BaseHook() {
                 val viewGroup = it.thisObject as ViewGroup
                 val context = viewGroup.context
                 val mOrientation = viewGroup.getObjectField("mOrientation") as Int
-                // MIUI编译时间大于 2022-03-12 00:00:00 且为内测版
-                if (SystemProperties[context, "ro.build.date.utc"].toInt() >= 1647014400 && !SystemProperties[context, "ro.build.version.incremental"].endsWith(
-                        "DEV"
-                    ) &&
-                    !SystemProperties[context, "ro.build.version.incremental"].endsWith("XM")
+                // MIUI编译时间大于 2022-03-12 00:00:00
+                if (SystemProperties[context, "ro.build.date.utc"].toInt() >= 1647014400
                 ) {
                     if (mOrientation == 1) {
                         mConstraintLayout!!.visibility = View.VISIBLE
